@@ -1,0 +1,60 @@
+package learn.funda.practice;
+// QuickWSort using first element as pivot 
+public class QuickSort {
+
+    public static void main(String args[]){
+        System.out.println(("Quick sort algorigthm demo, before sorting elements "));
+        int arr[] = { 7,9,5,2,4,3,8,1};
+        PrintElements(arr, arr.length);
+        System.out.println("\n Quick sort called ");
+        QuickSortAlgo(arr);
+        System.out.println(" \nQuick sort call got ended ");
+
+    }
+
+    public static void QuickSortAlgo(int list[]){
+
+        int size = list.length;
+
+        if(list !=null && size > 0)
+            quickSort(list,0,list.length - 1);
+
+        System.out.println("\nList after sorting is: ");
+        PrintElements(list, size);
+    }
+
+    private static void PrintElements(int[] list, int size) {
+        for(int i = 0; i < size; i++)
+            System.out.printf(" %d", list[i]);
+    }
+
+
+    static void quickSort(int arr[],int first,int last){
+        int pivot,i,j,temp;
+
+        if(first < last){
+            pivot = first;
+            i = first;
+            j = last;
+
+            while(i < j){
+                while(arr[i] <= arr[pivot] && i < last)
+                    i++;
+                while(arr[j] > arr[pivot])
+                    j--;
+                if(i < j){
+                    temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+
+            temp = arr[pivot];
+            arr[pivot] = arr[j];
+            arr[j] = temp;
+            quickSort(arr,first,j-1);
+            quickSort(arr,j+1,last);
+        }
+    }
+}
+
